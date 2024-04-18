@@ -1,29 +1,60 @@
 package com.assignments;
 
-import java.util.LinkedList;
-import java.util.List;
+
+import org.testng.annotations.Test;
 
 public class ReverseLinkedList {
-    public static void main(String[] args) {
-        LinkedList list = new LinkedList<>();
 
-        list.addFirst(6);
-        list.addFirst(5);
-        list.addFirst(4);
-        list.addFirst(3);
-        list.addFirst(2);
-        list.addFirst(1);
-        System.out.println(list);
-        reverselist(list);
-        System.out.println(list);
-    }
-
-    static public LinkedList reverselist(LinkedList ll) {
-        LinkedList rll = new LinkedList();
-        for (int i =ll.size()-1 ; i >=1; i--) {
-            rll.addFirst(ll.get(i));
+    class ListNode {
+        int no;
+        ListNode next;
+        ListNode(int no) {
+            this.no = no;
         }
-
-        return ll;
     }
+
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+
+        while (curr != null) {
+            ListNode nextTemp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nextTemp;
+        }
+        return prev;
+    }
+
+    public void printList(ListNode head) {
+        ListNode currentNode = head;
+
+        while (currentNode != null) {
+            System.out.print(currentNode.no + " ");
+            currentNode =currentNode.next;
+        }
+        System.out.println();
+    }
+
+
+    @Test
+    public void test1() {
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(4);
+        head.next.next.next.next = new ListNode(5);
+        //head.next=new ListNode(6);
+
+        System.out.println("Original List is:");
+        printList(head);
+
+        ListNode reversedHead = reverseList(head);
+
+        System.out.println("Reversed List is:");
+        printList(reversedHead);
+    }
+
 }
+
+
