@@ -1,7 +1,7 @@
 package com.assignments;
 
-import org.testng.annotations.Test;
-
+//import org.testng.annotations.Test;
+import org.junit.Test;
 public class Assignment1 {
 
     @Test
